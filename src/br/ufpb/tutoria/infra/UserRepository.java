@@ -6,7 +6,13 @@ import java.io.IOException;
 import java.util.List;
 
 public interface UserRepository {
-    void gravaUsuario(Usuario usuario) throws IOException;
+    boolean gravaUsuario(Usuario usuario) throws Exception;
+
     List<Usuario> carregarUsuarios() throws IOException;
-    boolean apagarUsuarios(String usuario) throws IOException;
+
+    boolean apagarUsuarioByName(String usuario) throws Exception;
+
+    Usuario findByName(String username) throws Exception;
+
+    boolean atualizarUsuario(Usuario usuario) throws Exception;
 }

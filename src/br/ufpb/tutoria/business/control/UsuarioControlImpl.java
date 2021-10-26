@@ -1,53 +1,89 @@
 package br.ufpb.tutoria.business.control;
 
+import br.ufpb.tutoria.Main;
 import br.ufpb.tutoria.business.model.Usuario;
-import br.ufpb.tutoria.infra.UserRepository;
-import br.ufpb.tutoria.infra.UserRepositoryImpl;
+import br.ufpb.tutoria.util.Warning;
 
-import java.io.IOException;
 import java.util.List;
 
-public class UsuarioControlImpl {
-    public List<Usuario> usuarios;
+public class UsuarioControlImpl implements UsuarioControl {
+    private List<Usuario> usuarios;
 
-    private UserRepository userRepository;
-    private CriteriosString criteriosString;
+    private final CriteriosString criteriosString = new CriteriosStringImpl();
 
-    public boolean inserirUsuario() throws Exception {
+    public boolean createUser(Usuario usuario) {
+        try {
+            criteriosString.naoContemNumeros("NOME DE USUARIO", usuario.getUsuario());
+            criteriosString.maximoDozeCaracteres("NOME DE USUARIO", usuario.getUsuario());
+            criteriosString.naoVazio("NOME DE USUARIO", usuario.getUsuario());
 
-        for(Usuario user : usuarios) {
-            criteriosString.naoContemNumeros("NOME DE USUARIO", user.getUsuario());
-            criteriosString.menorQueTrezeCaracteres("NOME DE USUARIO", user.getUsuario());
-            criteriosString.naoVazio("NOME DE USUARIO", user.getUsuario());
-
-            criteriosString.maiorQueSeteCaracteres("SENHA", user.getSenha());
-            criteriosString.menorQueVinteEUmCaracteres("SENHA", user.getSenha());
-            criteriosString.contemDoisNumeros("SENHA", user.getSenha());
-
-            try {
-                userRepository.gravaUsuario(user);
-            }catch (Exception e){
-                throw new Exception(e);
-            }
+            criteriosString.maiorQueOitoCaracteres("SENHA", usuario.getSenha());
+            criteriosString.menorQueVinteEUmCaracteres("SENHA", usuario.getSenha());
+            criteriosString.contemDoisNumeros("SENHA", usuario.getSenha());
+        } catch (Exception e){
+            Warning.warn(e.getMessage());
+            return false;
         }
-        usuarios.clear();
-        return true;
+        return saveUser(usuario);
     }
 
-    public List<Usuario> listarUsuarios() throws Exception{
+    public List<Usuario> listarUsuarios() {
         try {
-            usuarios = userRepository.carregarUsuarios();
+            usuarios = Main.userRepository.carregarUsuarios();
 
             for(Usuario user: usuarios){
                 System.out.println("Login: "+user.getUsuario()+" senha: "+user.getSenha());
             }
-        }catch(Exception e){
-            throw new Exception(e);
+        } catch(Exception e){
+            Warning.warn(e.getMessage());
         }
         return usuarios;
     }
 
-    public void deletarUsuario(String login) throws Exception{
-         if(!userRepository.apagarUsuarios(login)) throw new Exception("Erro ao deletar usuario");
+    public Usuario getUser(String nome){
+        try {
+            Main.userRepository.findByName(nome);
+        } catch (Exception e){
+            Warning.warn(e.getMessage());
+        }
+        return null;
+    }
+
+    public boolean saveUser(Usuario usuario) {
+        try {
+            Main.userRepository.gravaUsuario(usuario);
+            return true;
+        } catch (Exception e){
+            Warning.warn(e.getMessage());
+        }
+        return false;
+    }
+
+    public boolean deleteUser(String nome){
+        try {
+            Main.userRepository.apagarUsuarioByName(nome);
+            return true;
+        } catch (Exception e){
+            Warning.warn(e.getMessage());
+        }
+        return false;
+    }
+
+    public boolean updateUser(Usuario usuario){
+        try {
+            Main.userRepository.atualizarUsuario(usuario);
+            return true;
+        } catch (Exception e){
+            Warning.warn(e.getMessage());
+        }
+        return false;
+    }
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 }

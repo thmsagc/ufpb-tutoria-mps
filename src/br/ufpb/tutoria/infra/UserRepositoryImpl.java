@@ -4,14 +4,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.ufpb.tutoria.Main;
+import br.ufpb.tutoria.UfpbTutoriaConfig;
 import br.ufpb.tutoria.business.model.Usuario;
 
 public class UserRepositoryImpl implements UserRepository{
 
-    public void gravaUsuario(Usuario usuario) throws IOException {
+    @Override
+    public boolean gravaUsuario(Usuario usuario) throws Exception {
 
-        String pathCompleto = Main.path+ usuario.getUsuario() +".txt";
+        try {
+            for(Usuario u : Main.usuarioControl.getUsuarios()){
+                if(u.getUsuario().equals(usuario.getUsuario()))
+                    throw new Exception("Erro.");
+            }
+            salvarArquivoUsuario(usuario);
+            return true;
+        } catch (Exception e){
+            throw new Exception("Erro: Existe um usuário com nome " + usuario.getUsuario() + " nos arquivos.");
+        }
+    }
 
+    @Override
+    public boolean atualizarUsuario(Usuario usuario) throws Exception {
+        try {
+            findByName(usuario.getUsuario());
+            return salvarArquivoUsuario(usuario);
+        } catch (Exception e){
+            throw new Exception("Erro: Existe um usuário com nome " + usuario.getUsuario() + " nos arquivos.");
+        }
+    }
+
+    private boolean salvarArquivoUsuario(Usuario usuario) throws IOException {
+        String pathCompleto = UfpbTutoriaConfig.path + usuario.getUsuario() + ".txt";
         FileOutputStream arq = new FileOutputStream(pathCompleto);
         DataOutputStream gravarArq = new DataOutputStream(arq);
 
@@ -20,12 +44,12 @@ public class UserRepositoryImpl implements UserRepository{
 
         arq.close();
         gravarArq.close();
-
-        System.out.print("\nDados do usuário "+ usuario.getUsuario() +" com sucesso.");
+        return true;
     }
 
+    @Override
     public List<Usuario> carregarUsuarios() throws IOException {
-        File folder = new File(Main.path);
+        File folder = new File(UfpbTutoriaConfig.path);
         File[] listOfFiles = folder.listFiles();
         List<Usuario> usuarios = new ArrayList<Usuario>();;
 
@@ -42,28 +66,34 @@ public class UserRepositoryImpl implements UserRepository{
 
                 arq.close();
                 lerArq.close();
-
                 usuarios.add(new Usuario(usuarioArquivo, senhaArquivo));
             }
         }
         return usuarios;
     }
 
-    public boolean apagarUsuarios(String usuario) throws IOException {
+    public boolean apagarUsuarioByName(String usuario) throws Exception {
+        try {
+            Usuario finded = findByName(usuario);
+            String pathCompleto = UfpbTutoriaConfig.path + usuario + ".txt";
+            File f = new File(pathCompleto);
+            if (f.delete()) {
+                Main.usuarioControl.getUsuarios().remove(finded);
+                return true;
+            }
+        } catch (Exception e) {
+            throw new Exception("Erro: Falha ao deletar o usuário de nome " + usuario + ".");
+        }
+        return false;
+    }
 
-        File folder = new File(Main.path);
-        File[] listOfFiles = folder.listFiles();
-
-        assert listOfFiles != null;
-        for (File file : listOfFiles) {
-
-            if (file.getName().equals(Main.path+ usuario +".txt")) {
-
-                return file.delete();
+    @Override
+    public Usuario findByName(String name) throws Exception {
+        for(Usuario usuario : Main.usuarioControl.getUsuarios()){
+            if(usuario.getUsuario().equals(name)){
+                return usuario;
             }
         }
-
-        return false;
-
+        throw new Exception("Erro: Não existe um usuário com nome " + name + ".");
     }
 }

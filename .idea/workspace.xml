@@ -1,36 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="123d5f93-7da8-4ed5-817f-35ecee56b088" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/UserRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/description.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/project-template.xml" beforeDir="false" />
+    <list default="true" id="8e544aec-abcd-4e52-bd61-7d5b6be7f08f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/UfpbTutoriaConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/UsuarioControl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/util/Warning.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UFPB-TUTORIA.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/UFPB-TUTORIA/br/ufpb/tutoria/Main.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/UsuarioControl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/CriteriosString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/CriteriosString.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/CriteriosStringImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/CriteriosStringImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/UsuarioControlImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/UsuarioControlImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/UserRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/UserRepositoryImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,51 +25,125 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="201nBnjtvASUzu0hJpGGfP6eSLr" />
+  <component name="ProjectId" id="2030IFbeNiRlsTPwzHd8cu5dxgO" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="company" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="11" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="br.ufpb.tutoria.Main" />
-      <module name="UFPB-TUTORIA" />
+      <module name="br.ufpb.tutoria" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="Application" factoryName="Application">
-      <option name="ALTERNATIVE_JRE_PATH" value="11" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="br.ufpb.tutoria.Main" />
-      <module name="UFPB-TUTORIA" />
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="123d5f93-7da8-4ed5-817f-35ecee56b088" name="Default Changelist" comment="" />
-      <created>1635220830677</created>
+      <changelist id="8e544aec-abcd-4e52-bd61-7d5b6be7f08f" name="Default Changelist" comment="" />
+      <created>1635257884042</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1635220830677</updated>
+      <updated>1635257884042</updated>
+      <workItem from="1635257885594" duration="4225000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -97,16 +155,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="169" y="55" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1635223891789">
-      <screen x="56" y="27" width="1310" height="741" />
-    </state>
-    <state x="169" y="55" key="#com.intellij.execution.impl.EditConfigurationsDialog/56.27.1310.741@56.27.1310.741" timestamp="1635223891789" />
-    <state x="444" y="146" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1635222540454">
-      <screen x="56" y="27" width="1310" height="741" />
-    </state>
-    <state x="444" y="146" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/56.27.1310.741@56.27.1310.741" timestamp="1635222540454" />
   </component>
 </project>
