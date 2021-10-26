@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e544aec-abcd-4e52-bd61-7d5b6be7f08f" name="Default Changelist" comment="finalização do crud, encapsulamentos, inversões de dependencia e otimizações de código">
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+    <list default="true" id="8e544aec-abcd-4e52-bd61-7d5b6be7f08f" name="Default Changelist" comment="correções de código">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UFPB-TUTORIA.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UFPB-TUTORIA/br/ufpb/tutoria/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/UserRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/UserRepositoryImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +23,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectId" id="2030IFbeNiRlsTPwzHd8cu5dxgO" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -139,7 +136,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1635257884042</updated>
-      <workItem from="1635257885594" duration="6758000" />
+      <workItem from="1635257885594" duration="6872000" />
     </task>
     <task id="LOCAL-00001" summary="finalização do crud, encapsulamentos, inversões de dependencia e otimizações de código">
       <created>1635263946766</created>
@@ -148,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635263946766</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="correções de código">
+      <created>1635269304816</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1635269304816</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,6 +171,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="finalização do crud, encapsulamentos, inversões de dependencia e otimizações de código" />
-    <option name="LAST_COMMIT_MESSAGE" value="finalização do crud, encapsulamentos, inversões de dependencia e otimizações de código" />
+    <MESSAGE value="correções de código" />
+    <option name="LAST_COMMIT_MESSAGE" value="correções de código" />
   </component>
 </project>
