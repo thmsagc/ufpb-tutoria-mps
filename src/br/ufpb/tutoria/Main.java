@@ -46,9 +46,11 @@ public class Main {
         Usuario usuario2 = new Usuario("teste2", "123");
         Usuario usuario3 = new Usuario("teste3", "123");
 
-        userControl.inserirUsuario(usuario1.getUsuario(), usuario1.getSenha());
-        userControl.inserirUsuario(usuario2.getUsuario(), usuario2.getSenha());
-        userControl.inserirUsuario(usuario3.getUsuario(), usuario3.getSenha());
+        userControl.usuarios.add(usuario1);
+        userControl.usuarios.add(usuario2);
+        userControl.usuarios.add(usuario3);
+
+        userControl.inserirUsuario();
 
         userControl.deletarUsuario(usuario3.getUsuario());
 

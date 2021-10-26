@@ -13,25 +13,34 @@ public class UsuarioControlImpl {
     private UserRepository userRepository;
     private CriteriosString criteriosString;
 
-    public boolean inserirUsuario(String usuario, String senha) throws Exception {
+    public boolean inserirUsuario() throws Exception {
 
-        criteriosString.naoContemNumeros("NOME DE USUARIO", usuario);
-        criteriosString.menorQueTrezeCaracteres("NOME DE USUARIO", usuario);
-        criteriosString.naoVazio("NOME DE USUARIO", usuario);
+        for(Usuario user : usuarios) {
+            criteriosString.naoContemNumeros("NOME DE USUARIO", user.getUsuario());
+            criteriosString.menorQueTrezeCaracteres("NOME DE USUARIO", user.getUsuario());
+            criteriosString.naoVazio("NOME DE USUARIO", user.getUsuario());
 
-        criteriosString.maiorQueSeteCaracteres("SENHA", senha);
-        criteriosString.menorQueVinteEUmCaracteres("SENHA", senha);
-        criteriosString.contemDoisNumeros("SENHA", senha);
+            criteriosString.maiorQueSeteCaracteres("SENHA", user.getSenha());
+            criteriosString.menorQueVinteEUmCaracteres("SENHA", user.getSenha());
+            criteriosString.contemDoisNumeros("SENHA", user.getSenha());
 
-        Usuario user = new Usuario(usuario, senha);
-        userRepository.gravaUsuario(user);
-
+            try {
+                userRepository.gravaUsuario(user);
+            }catch (Exception e){
+                throw new Exception(e);
+            }
+        }
+        usuarios.clear();
         return true;
     }
 
     public List<Usuario> listarUsuarios() throws Exception{
         try {
             usuarios = userRepository.carregarUsuarios();
+
+            for(Usuario user: usuarios){
+                System.out.println("Login: "+user.getUsuario()+" senha: "+user.getSenha());
+            }
         }catch(Exception e){
             throw new Exception(e);
         }
