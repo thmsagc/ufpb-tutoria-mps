@@ -13,4 +13,5 @@ public interface UsuarioControl {
     public boolean updateUser(Usuario usuario);
     public List<Usuario> getUsuarios();
     public void setUsuarios(List<Usuario> usuarios);
+    public void inserirUsuarios (List<Usuario> usuarios);
 }
