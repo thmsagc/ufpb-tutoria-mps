@@ -1,12 +1,12 @@
 package br.ufpb.tutoria.infra;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import org.apache.commons.io.FilenameUtils;
 
 import br.ufpb.tutoria.Main;
 import br.ufpb.tutoria.UfpbTutoriaConfig;
 import br.ufpb.tutoria.business.model.Usuario;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserRepositoryImpl implements UserRepository{
 
@@ -96,44 +96,5 @@ public class UserRepositoryImpl implements UserRepository{
             }
         }
         throw new Exception("Erro: Não existe um usuário com nome " + name + ".");
-    }
-
-    public void update(){
-
-        String[] fileNames;
-
-        File f = new File(Main.path);
-
-        fileNames = f.list();
-
-        int i = 0;
-        
-        String fileNameWithOutExt = FilenameUtils.removeExtension(fileNames);
-
-        int files[];
-
-        for(i = 0; i < fileNameWithOutExt.length(); i++){
-
-            files[i] = Integer.parseInt(fileNameWithOutExt);
-
-        }
-
-        i = 0;
-
-        for (i = 0; i < fileNameWithOutExt.length(); i++){
-
-            int index = i;
-
-            for (int j = i + 1; j < files.length; j++){
-                if (files[j] < files[index]){
-                    index = j;//searching for lowest index
-                }
-            }
-
-            int smallerNumber = files[index];
-            files[index] = files[i];
-            files[i] = smallerNumber;
-
-        }
     }
 }
