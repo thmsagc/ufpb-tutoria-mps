@@ -1,28 +1,26 @@
 package br.ufpb.tutoria.business.control;
 
+import br.ufpb.tutoria.business.model.Usuario;
+import br.ufpb.tutoria.infra.UserRepository;
+
+import java.io.IOException;
+
 public class UsuarioControlImpl implements UsuarioControl{
     private String usuario;
     private String senha;
 
+    private CriteriosString criteriosString;
+
     public boolean inserirUsuario(String usuario, String senha) throws Exception {
-        if(usuario.matches(".*\\d.*"))
-            throw new Exception("O NOME DO USUÁRIO NÃO PODE CONTER NÚMEROS.");
-        if(usuario.length() > 20)
-            throw new Exception("O NOME DO USUÁRIO NÃO PODE EXCEDER 20 CARACTERES.");
-        if(usuario.length() < 8)
-            throw new Exception("O NOME DO USUÁRIO DEVE CONTER PELO MENOS 8 CARACTERES.");
 
-        if(senha.matches(".*\\d.*"))
-            throw new Exception("O NOME DO USUÁRIO NÃO PODE CONTER NÚMEROS.");
-        if(senha.length() > 20)
-            throw new Exception("O NOME DO USUÁRIO NÃO PODE EXCEDER 20 CARACTERES.");
-        if(senha.length() < 8)
-            throw new Exception("O NOME DO USUÁRIO DEVE CONTER PELO MENOS 8 CARACTERES.");
+        criteriosString.naoContemNumeros("NOME DE USUARIO", usuario);
+        criteriosString.menorQueTrezeCaracteres("NOME DE USUARIO", usuario);
+        criteriosString.naoVazio("NOME DE USUARIO", usuario);
 
-        return true;
-    }
+        criteriosString.maiorQueSeteCaracteres("SENHA", senha);
+        criteriosString.menorQueVinteEUmCaracteres("SENHA", senha);
+        criteriosString.contemDoisNumeros("SENHA", senha);
 
-    public boolean existsUsuario(String usuario, String senha){
         return true;
     }
 }

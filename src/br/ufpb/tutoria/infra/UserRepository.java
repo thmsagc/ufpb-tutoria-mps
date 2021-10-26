@@ -1,44 +1,51 @@
 package br.ufpb.tutoria.infra;
-import java.io.DataInputStream;
-import java.io.FileInputStream;
-import java.io.DataOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
+import br.ufpb.tutoria.Main;
 import br.ufpb.tutoria.business.model.Usuario;
 
 public class UserRepository {
-    public static void LeArquivo(String[] args) throws IOException {
-        String login;
-        String senha;
-    
-        FileInputStream arq = new FileInputStream("d:\\arquivo.dat");
-        DataInputStream lerArq = new DataInputStream(arq);
 
-        do {
-            login = lerArq.readUTF();
-            senha = lerArq.readUTF();
-    
-            System.out.printf("Nome..................: %s\n", login);
-            System.out.printf("Sexo..................: %c\n", senha);
-        
-        } while(login != null || senha != null);
-    
-        arq.close();
-    }
+    public static void GravaUsuario(Usuario usuario) throws IOException {
 
-    public static void GravaArquivos(List <Usuario> usuarios) throws IOException {
-        FileOutputStream arq = new FileOutputStream("d:\\arquivo.dat");
+        String pathCompleto = Main.path+ usuario.getUsuario() +".txt";
+
+        FileOutputStream arq = new FileOutputStream(pathCompleto);
         DataOutputStream gravarArq = new DataOutputStream(arq);
 
-        for(Usuario user: usuarios) {
-            gravarArq.writeUTF(user.getUsuario());
-            gravarArq.writeUTF(user.getSenha());
-        }
+        gravarArq.writeUTF(usuario.getUsuario());
+        gravarArq.writeUTF(usuario.getSenha());
 
         arq.close();
-    
-        System.out.printf("\nDados gravados com sucesso em \"d:\\arquivo.dat\".\n");
-    }  
+        gravarArq.close();
+
+        System.out.print("\nDados do usuário "+ usuario.getUsuario() +" com sucesso.");
+    }
+
+    public static List<Usuario> CarregarUsuarios() throws IOException {
+        File folder = new File(Main.path);
+        File[] listOfFiles = folder.listFiles();
+        List<Usuario> usuarios = new ArrayList<Usuario>();;
+
+        assert listOfFiles != null;
+        for (File file : listOfFiles) {
+
+            if (file.isFile()) {
+
+                FileInputStream arq = new FileInputStream(file);
+                DataInputStream lerArq = new DataInputStream(arq);
+
+                String usuarioArquivo = lerArq.readUTF();
+                String senhaArquivo = lerArq.readUTF();
+
+                arq.close();
+                lerArq.close();
+
+                usuarios.add(new Usuario(usuarioArquivo, senhaArquivo));
+            }
+        }
+        return usuarios;
+    }
 }
