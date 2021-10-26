@@ -48,4 +48,21 @@ public class UserRepository {
         }
         return usuarios;
     }
+
+    public static void ApagarUsuarios(String usuario) throws IOException {
+
+    File folder = new File(Main.path);
+    File[] listOfFiles = folder.listFiles();
+    List<Usuario> usuarios = new ArrayList<Usuario>();;
+
+        assert listOfFiles != null;
+        for (File file : listOfFiles) {
+
+            if (file.getName().equals(Main.path+ usuario +".txt")) {
+
+                file.delete();
+            }
+        }
+
+    }
 }
