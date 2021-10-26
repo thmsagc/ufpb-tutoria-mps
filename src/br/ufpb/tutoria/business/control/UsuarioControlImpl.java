@@ -86,4 +86,10 @@ public class UsuarioControlImpl implements UsuarioControl {
     public void setUsuarios(List<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
+
+    public void inserirUsuarios(List<Usuario> usuarios) {
+        for(Usuario usuario : usuarios){
+            createUser(usuario);
+        }
+    }
 }
