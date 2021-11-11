@@ -5,7 +5,7 @@ import br.ufpb.tutoria.business.model.Usuario;
 import java.io.IOException;
 import java.util.List;
 
-public interface UserRepository {
+public interface UsuarioRepositorio {
     boolean gravaUsuario(Usuario usuario) throws Exception;
 
     List<Usuario> carregarUsuarios() throws IOException;

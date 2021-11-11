@@ -1,9 +1,8 @@
 package br.ufpb.tutoria.business.control;
 
-import br.ufpb.tutoria.Main;
 import br.ufpb.tutoria.business.control.criteriosstring.*;
 import br.ufpb.tutoria.business.model.Usuario;
-import br.ufpb.tutoria.infra.UserRepository;
+import br.ufpb.tutoria.infra.UsuarioRepositorio;
 import br.ufpb.tutoria.util.Warning;
 
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.List;
 public class UsuarioControlImpl implements UsuarioControl {
     private List<Usuario> usuarios;
 
-    private UserRepository userRepository;
+    private UsuarioRepositorio usuarioRepositorio;
 
     private CS_ConterDoisNumerosOuMais cs_conterDoisNumerosOuMais;
     private CS_MaiorQueSeteCaracteres cs_maiorQueSeteCaracteres;
@@ -20,9 +19,9 @@ public class UsuarioControlImpl implements UsuarioControl {
     private CS_NaoConterNumeros cs_naoConterNumeros;
     private CS_NaoVazio cs_naoVazio;
 
-    public UsuarioControlImpl(List<Usuario> usuarios, UserRepository userRepository, CS_ConterDoisNumerosOuMais cs_conterDoisNumerosOuMais, CS_MaiorQueSeteCaracteres cs_maiorQueSeteCaracteres, CS_MenorQueTrezeCaracteres cs_menorQueTrezeCaracteres, CS_MenorQueVinteUmCaracteres cs_MenorQueVinteUmCaracteres, CS_NaoConterNumeros cs_naoConterNumeros, CS_NaoVazio cs_naoVazio) {
+    public UsuarioControlImpl(List<Usuario> usuarios, UsuarioRepositorio usuarioRepositorio, CS_ConterDoisNumerosOuMais cs_conterDoisNumerosOuMais, CS_MaiorQueSeteCaracteres cs_maiorQueSeteCaracteres, CS_MenorQueTrezeCaracteres cs_menorQueTrezeCaracteres, CS_MenorQueVinteUmCaracteres cs_MenorQueVinteUmCaracteres, CS_NaoConterNumeros cs_naoConterNumeros, CS_NaoVazio cs_naoVazio) {
         this.usuarios = usuarios;
-        this.userRepository = userRepository;
+        this.usuarioRepositorio = usuarioRepositorio;
         this.cs_conterDoisNumerosOuMais = cs_conterDoisNumerosOuMais;
         this.cs_maiorQueSeteCaracteres = cs_maiorQueSeteCaracteres;
         this.cs_menorQueTrezeCaracteres = cs_menorQueTrezeCaracteres;
@@ -49,7 +48,7 @@ public class UsuarioControlImpl implements UsuarioControl {
 
     public List<Usuario> listarUsuarios() {
         try {
-            usuarios = userRepository.carregarUsuarios();
+            usuarios = usuarioRepositorio.carregarUsuarios();
 
             for(Usuario user: usuarios){
                 System.out.println("Login: "+user.getUsuario()+" senha: "+user.getSenha());
@@ -62,7 +61,7 @@ public class UsuarioControlImpl implements UsuarioControl {
 
     public Usuario getUser(String nome){
         try {
-            userRepository.findByName(nome);
+            usuarioRepositorio.findByName(nome);
         } catch (Exception e){
             Warning.warn(e.getMessage());
         }
@@ -71,7 +70,7 @@ public class UsuarioControlImpl implements UsuarioControl {
 
     public boolean saveUser(Usuario usuario) {
         try {
-            userRepository.gravaUsuario(usuario);
+            usuarioRepositorio.gravaUsuario(usuario);
             return true;
         } catch (Exception e){
             Warning.warn(e.getMessage());
@@ -81,7 +80,7 @@ public class UsuarioControlImpl implements UsuarioControl {
 
     public boolean deleteUser(String nome){
         try {
-            userRepository.apagarUsuarioByName(nome);
+            usuarioRepositorio.apagarUsuarioByName(nome);
             return true;
         } catch (Exception e){
             Warning.warn(e.getMessage());
@@ -91,7 +90,7 @@ public class UsuarioControlImpl implements UsuarioControl {
 
     public boolean updateUser(Usuario usuario){
         try {
-            userRepository.atualizarUsuario(usuario);
+            usuarioRepositorio.atualizarUsuario(usuario);
             return true;
         } catch (Exception e){
             Warning.warn(e.getMessage());

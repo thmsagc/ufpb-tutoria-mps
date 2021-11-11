@@ -1,18 +1,16 @@
 package br.ufpb.tutoria.infra;
 
 import br.ufpb.tutoria.UfpbTutoriaConfig;
-import br.ufpb.tutoria.business.control.UsuarioControl;
 import br.ufpb.tutoria.business.model.Usuario;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
-public class UserRepositoryImpl implements UserRepository{
+public class UsuarioRepositorioImpl implements UsuarioRepositorio {
 
     private final List<Usuario> usuarios;
 
-    public UserRepositoryImpl(List<Usuario> usuarios) {
+    public UsuarioRepositorioImpl(List<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
 

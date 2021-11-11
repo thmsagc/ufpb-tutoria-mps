@@ -4,8 +4,8 @@ import br.ufpb.tutoria.business.control.UsuarioControl;
 import br.ufpb.tutoria.business.control.UsuarioControlImpl;
 import br.ufpb.tutoria.business.control.criteriosstring.*;
 import br.ufpb.tutoria.business.model.Usuario;
-import br.ufpb.tutoria.infra.UserRepository;
-import br.ufpb.tutoria.infra.UserRepositoryImpl;
+import br.ufpb.tutoria.infra.UsuarioRepositorio;
+import br.ufpb.tutoria.infra.UsuarioRepositorioImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ public class Main {
 
         List<Usuario> usuarios = new ArrayList<Usuario>();
 
-        UserRepository userRepository = new UserRepositoryImpl(usuarios);
+        UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorioImpl(usuarios);
 
         CS_ConterDoisNumerosOuMais cs_conterDoisNumerosOuMais = new CS_ConterDoisNumerosOuMais();
         CS_MaiorQueSeteCaracteres cs_maiorQueSeteCaracteres = new CS_MaiorQueSeteCaracteres();
@@ -27,7 +27,7 @@ public class Main {
 
         UsuarioControl usuarioControl = new UsuarioControlImpl(
                 usuarios,
-                userRepository,
+                usuarioRepositorio,
                 cs_conterDoisNumerosOuMais,
                 cs_maiorQueSeteCaracteres,
                 cs_menorQueTrezeCaracteres,
@@ -36,7 +36,7 @@ public class Main {
                 cs_naoVazio
         );
 
-        usuarioControl.setUsuarios(userRepository.carregarUsuarios());
+        usuarioControl.setUsuarios(usuarioRepositorio.carregarUsuarios());
 
         Usuario usuario1 = new Usuario("testeum", "1GFdmglG1");
         Usuario usuario2 = new Usuario("testedois", "1jfffffm2");
