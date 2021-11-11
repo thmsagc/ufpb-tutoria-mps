@@ -58,7 +58,6 @@ public class UserRepositoryImpl implements UserRepository{
     public List<Usuario> carregarUsuarios() throws IOException {
         File folder = new File(UfpbTutoriaConfig.path);
         File[] listOfFiles = folder.listFiles();
-        List<Usuario> usuarios = new ArrayList<Usuario>();;
 
         assert listOfFiles != null;
         for (File file : listOfFiles) {
