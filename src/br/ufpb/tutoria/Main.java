@@ -39,7 +39,7 @@ public class Main {
         usuarioControl.setUsuarios(userRepository.carregarUsuarios());
 
         Usuario usuario1 = new Usuario("testeum", "1GFdmglG1");
-        Usuario usuario2 = new Usuario("testedois", "1jfffffm");
+        Usuario usuario2 = new Usuario("testedois", "1jfffffm2");
         Usuario usuario3 = new Usuario("testetres", "1hjfffff3");
 
         usuarioControl.createUser(usuario1);
