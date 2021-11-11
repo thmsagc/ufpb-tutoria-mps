@@ -1,7 +1,9 @@
 package br.ufpb.tutoria.business.control;
 
 import br.ufpb.tutoria.Main;
+import br.ufpb.tutoria.business.control.criteriosstring.*;
 import br.ufpb.tutoria.business.model.Usuario;
+import br.ufpb.tutoria.infra.UserRepository;
 import br.ufpb.tutoria.util.Warning;
 
 import java.util.List;
@@ -9,17 +11,35 @@ import java.util.List;
 public class UsuarioControlImpl implements UsuarioControl {
     private List<Usuario> usuarios;
 
-    private final CriteriosString criteriosString = new CriteriosStringImpl();
+    private UserRepository userRepository;
+
+    private CS_ConterDoisNumerosOuMais cs_conterDoisNumerosOuMais;
+    private CS_MaiorQueSeteCaracteres cs_maiorQueSeteCaracteres;
+    private CS_MenorQueTrezeCaracteres cs_menorQueTrezeCaracteres;
+    private CS_MenorQueVinteUmCaracteres cs_MenorQueVinteUmCaracteres;
+    private CS_NaoConterNumeros cs_naoConterNumeros;
+    private CS_NaoVazio cs_naoVazio;
+
+    public UsuarioControlImpl(List<Usuario> usuarios, UserRepository userRepository, CS_ConterDoisNumerosOuMais cs_conterDoisNumerosOuMais, CS_MaiorQueSeteCaracteres cs_maiorQueSeteCaracteres, CS_MenorQueTrezeCaracteres cs_menorQueTrezeCaracteres, CS_MenorQueVinteUmCaracteres cs_MenorQueVinteUmCaracteres, CS_NaoConterNumeros cs_naoConterNumeros, CS_NaoVazio cs_naoVazio) {
+        this.usuarios = usuarios;
+        this.userRepository = userRepository;
+        this.cs_conterDoisNumerosOuMais = cs_conterDoisNumerosOuMais;
+        this.cs_maiorQueSeteCaracteres = cs_maiorQueSeteCaracteres;
+        this.cs_menorQueTrezeCaracteres = cs_menorQueTrezeCaracteres;
+        this.cs_MenorQueVinteUmCaracteres = cs_MenorQueVinteUmCaracteres;
+        this.cs_naoConterNumeros = cs_naoConterNumeros;
+        this.cs_naoVazio = cs_naoVazio;
+    }
 
     public boolean createUser(Usuario usuario) {
         try {
-            criteriosString.naoContemNumeros("NOME DE USUARIO", usuario.getUsuario());
-            criteriosString.maximoDozeCaracteres("NOME DE USUARIO", usuario.getUsuario());
-            criteriosString.naoVazio("NOME DE USUARIO", usuario.getUsuario());
+            cs_naoConterNumeros.criterio("NOME DE USUARIO", usuario.getUsuario());
+            cs_menorQueTrezeCaracteres.criterio("NOME DE USUARIO", usuario.getUsuario());
+            cs_naoVazio.criterio("NOME DE USUARIO", usuario.getUsuario());
 
-            criteriosString.maiorQueOitoCaracteres("SENHA", usuario.getSenha());
-            criteriosString.menorQueVinteEUmCaracteres("SENHA", usuario.getSenha());
-            criteriosString.contemDoisNumeros("SENHA", usuario.getSenha());
+            cs_maiorQueSeteCaracteres.criterio("SENHA", usuario.getSenha());
+            cs_MenorQueVinteUmCaracteres.criterio("SENHA", usuario.getSenha());
+            cs_conterDoisNumerosOuMais.criterio("SENHA", usuario.getSenha());
         } catch (Exception e){
             Warning.warn(e.getMessage());
             return false;
@@ -29,7 +49,7 @@ public class UsuarioControlImpl implements UsuarioControl {
 
     public List<Usuario> listarUsuarios() {
         try {
-            usuarios = Main.userRepository.carregarUsuarios();
+            usuarios = userRepository.carregarUsuarios();
 
             for(Usuario user: usuarios){
                 System.out.println("Login: "+user.getUsuario()+" senha: "+user.getSenha());
@@ -42,7 +62,7 @@ public class UsuarioControlImpl implements UsuarioControl {
 
     public Usuario getUser(String nome){
         try {
-            Main.userRepository.findByName(nome);
+            userRepository.findByName(nome);
         } catch (Exception e){
             Warning.warn(e.getMessage());
         }
@@ -51,7 +71,7 @@ public class UsuarioControlImpl implements UsuarioControl {
 
     public boolean saveUser(Usuario usuario) {
         try {
-            Main.userRepository.gravaUsuario(usuario);
+            userRepository.gravaUsuario(usuario);
             return true;
         } catch (Exception e){
             Warning.warn(e.getMessage());
@@ -61,7 +81,7 @@ public class UsuarioControlImpl implements UsuarioControl {
 
     public boolean deleteUser(String nome){
         try {
-            Main.userRepository.apagarUsuarioByName(nome);
+            userRepository.apagarUsuarioByName(nome);
             return true;
         } catch (Exception e){
             Warning.warn(e.getMessage());
@@ -71,7 +91,7 @@ public class UsuarioControlImpl implements UsuarioControl {
 
     public boolean updateUser(Usuario usuario){
         try {
-            Main.userRepository.atualizarUsuario(usuario);
+            userRepository.atualizarUsuario(usuario);
             return true;
         } catch (Exception e){
             Warning.warn(e.getMessage());

@@ -1,7 +1,7 @@
 package br.ufpb.tutoria.infra;
 
-import br.ufpb.tutoria.Main;
 import br.ufpb.tutoria.UfpbTutoriaConfig;
+import br.ufpb.tutoria.business.control.UsuarioControl;
 import br.ufpb.tutoria.business.model.Usuario;
 
 import java.io.*;
@@ -10,11 +10,17 @@ import java.util.List;
 
 public class UserRepositoryImpl implements UserRepository{
 
+    private final List<Usuario> usuarios;
+
+    public UserRepositoryImpl(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
     @Override
     public boolean gravaUsuario(Usuario usuario) throws Exception {
 
         try {
-            for(Usuario u : Main.usuarioControl.getUsuarios()){
+            for(Usuario u : usuarios){
                 if(u.getUsuario().equals(usuario.getUsuario()))
                     throw new Exception("Erro.");
             }
@@ -79,7 +85,7 @@ public class UserRepositoryImpl implements UserRepository{
             String pathCompleto = UfpbTutoriaConfig.path + usuario + ".txt";
             File f = new File(pathCompleto);
             if (f.delete()) {
-                Main.usuarioControl.getUsuarios().remove(finded);
+                usuarios.remove(finded);
                 return true;
             }
         } catch (Exception e) {
@@ -90,7 +96,7 @@ public class UserRepositoryImpl implements UserRepository{
 
     @Override
     public Usuario findByName(String name) throws Exception {
-        for(Usuario usuario : Main.usuarioControl.getUsuarios()){
+        for(Usuario usuario : usuarios){
             if(usuario.getUsuario().equals(name)){
                 return usuario;
             }
