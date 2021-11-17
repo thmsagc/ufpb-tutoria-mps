@@ -1,8 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e544aec-abcd-4e52-bd61-7d5b6be7f08f" name="Default Changelist" comment="correções de código">
+    <list default="true" id="4693d7cb-18ae-4942-a7b6-d3de935df65d" name="Default Changelist" comment="renomeação dos objetos, classes e interfaces referentes a camada de persistência">
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pasta_usuarios/teste.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/exception/ExistingUserException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/exception/InternalErrorException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/exception/NoUserException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/exception/UnexpectedStringException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/UsuarioControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/UsuarioControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/UsuarioControlImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/UsuarioControlImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/criteriosstring/CS_ConterDoisNumerosOuMais.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/criteriosstring/CS_ConterDoisNumerosOuMais.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/criteriosstring/CS_MaiorQueSeteCaracteres.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/criteriosstring/CS_MaiorQueSeteCaracteres.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/criteriosstring/CS_MenorQueTrezeCaracteres.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/criteriosstring/CS_MenorQueTrezeCaracteres.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/criteriosstring/CS_MenorQueVinteUmCaracteres.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/criteriosstring/CS_MenorQueVinteUmCaracteres.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/criteriosstring/CS_NaoConterNumeros.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/criteriosstring/CS_NaoConterNumeros.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/criteriosstring/CS_NaoVazio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/criteriosstring/CS_NaoVazio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/UsuarioRepositorio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/UsuarioRepositorio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/UsuarioRepositorioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/UsuarioRepositorioImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,103 +37,61 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="backup" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="ProjectId" id="2030IFbeNiRlsTPwzHd8cu5dxgO" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="untitled104" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="untitled104" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="untitled104" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="untitled104" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="untitled104" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="company" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-    </panes>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="20mcQrvvJ4bPzgGW8SuDT45wuka" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="br.ufpb.tutoria.exception" />
+      <recent name="br.ufpb.tutoria.business.control.criteriosstring" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="br.ufpb.tutoria.Main" />
-      <module name="br.ufpb.tutoria" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
+      <module name="UFPB-TUTORIA" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.ufpb.tutoria.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -122,37 +100,49 @@
       <list>
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8e544aec-abcd-4e52-bd61-7d5b6be7f08f" name="Default Changelist" comment="" />
-      <created>1635257884042</created>
+      <changelist id="4693d7cb-18ae-4942-a7b6-d3de935df65d" name="Default Changelist" comment="" />
+      <created>1636653190570</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1635257884042</updated>
-      <workItem from="1635257885594" duration="6872000" />
+      <updated>1636653190570</updated>
+      <workItem from="1636653191987" duration="5954000" />
+      <workItem from="1637189195575" duration="1737000" />
     </task>
-    <task id="LOCAL-00001" summary="finalização do crud, encapsulamentos, inversões de dependencia e otimizações de código">
-      <created>1635263946766</created>
+    <task id="LOCAL-00001" summary="correções e melhorias de código, implementação da injeção de dependências.">
+      <created>1636655167975</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1635263946766</updated>
+      <updated>1636655167975</updated>
     </task>
-    <task id="LOCAL-00002" summary="correções de código">
-      <created>1635269304816</created>
+    <task id="LOCAL-00002" summary="injeção de dependências.">
+      <created>1636655247953</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1635269304816</updated>
+      <updated>1636655247953</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="correção na camada de persistência">
+      <created>1636655413511</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1636655413511</updated>
+    </task>
+    <task id="LOCAL-00004" summary="renomeação dos objetos, classes e interfaces referentes a camada de persistência">
+      <created>1636655499751</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1636655499751</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,10 +158,14 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="finalização do crud, encapsulamentos, inversões de dependencia e otimizações de código" />
-    <MESSAGE value="correções de código" />
-    <option name="LAST_COMMIT_MESSAGE" value="correções de código" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="correções e melhorias de código, implementação da injeção de dependências." />
+    <MESSAGE value="injeção de dependências." />
+    <MESSAGE value="correção na camada de persistência" />
+    <MESSAGE value="renomeação dos objetos, classes e interfaces referentes a camada de persistência" />
+    <option name="LAST_COMMIT_MESSAGE" value="renomeação dos objetos, classes e interfaces referentes a camada de persistência" />
   </component>
 </project>

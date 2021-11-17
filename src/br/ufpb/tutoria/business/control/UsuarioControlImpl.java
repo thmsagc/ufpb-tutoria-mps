@@ -2,6 +2,7 @@ package br.ufpb.tutoria.business.control;
 
 import br.ufpb.tutoria.business.control.criteriosstring.*;
 import br.ufpb.tutoria.business.model.Usuario;
+import br.ufpb.tutoria.exception.UnexpectedStringException;
 import br.ufpb.tutoria.infra.UsuarioRepositorio;
 import br.ufpb.tutoria.util.Warning;
 
@@ -12,25 +13,22 @@ public class UsuarioControlImpl implements UsuarioControl {
 
     private UsuarioRepositorio usuarioRepositorio;
 
-    private CS_ConterDoisNumerosOuMais cs_conterDoisNumerosOuMais;
-    private CS_MaiorQueSeteCaracteres cs_maiorQueSeteCaracteres;
-    private CS_MenorQueTrezeCaracteres cs_menorQueTrezeCaracteres;
-    private CS_MenorQueVinteUmCaracteres cs_MenorQueVinteUmCaracteres;
-    private CS_NaoConterNumeros cs_naoConterNumeros;
-    private CS_NaoVazio cs_naoVazio;
+    private CS_ConterDoisNumerosOuMais cs_conterDoisNumerosOuMais = new CS_ConterDoisNumerosOuMais();
+    private CS_MaiorQueSeteCaracteres cs_maiorQueSeteCaracteres = new CS_MaiorQueSeteCaracteres();
+    private CS_MenorQueTrezeCaracteres cs_menorQueTrezeCaracteres = new CS_MenorQueTrezeCaracteres();
+    private CS_MenorQueVinteUmCaracteres cs_MenorQueVinteUmCaracteres = new CS_MenorQueVinteUmCaracteres();
+    private CS_NaoConterNumeros cs_naoConterNumeros = new CS_NaoConterNumeros();
+    private CS_NaoVazio cs_naoVazio = new CS_NaoVazio();
 
-    public UsuarioControlImpl(List<Usuario> usuarios, UsuarioRepositorio usuarioRepositorio, CS_ConterDoisNumerosOuMais cs_conterDoisNumerosOuMais, CS_MaiorQueSeteCaracteres cs_maiorQueSeteCaracteres, CS_MenorQueTrezeCaracteres cs_menorQueTrezeCaracteres, CS_MenorQueVinteUmCaracteres cs_MenorQueVinteUmCaracteres, CS_NaoConterNumeros cs_naoConterNumeros, CS_NaoVazio cs_naoVazio) {
+    public UsuarioControlImpl(List<Usuario> usuarios, UsuarioRepositorio usuarioRepositorio) {
         this.usuarios = usuarios;
         this.usuarioRepositorio = usuarioRepositorio;
-        this.cs_conterDoisNumerosOuMais = cs_conterDoisNumerosOuMais;
-        this.cs_maiorQueSeteCaracteres = cs_maiorQueSeteCaracteres;
-        this.cs_menorQueTrezeCaracteres = cs_menorQueTrezeCaracteres;
-        this.cs_MenorQueVinteUmCaracteres = cs_MenorQueVinteUmCaracteres;
-        this.cs_naoConterNumeros = cs_naoConterNumeros;
-        this.cs_naoVazio = cs_naoVazio;
     }
 
-    public boolean createUser(Usuario usuario) {
+    public boolean createUser(String username, String senha) {
+
+        Usuario usuario = new Usuario(username, senha);
+
         try {
             cs_naoConterNumeros.criterio("NOME DE USUARIO", usuario.getUsuario());
             cs_menorQueTrezeCaracteres.criterio("NOME DE USUARIO", usuario.getUsuario());
@@ -39,7 +37,7 @@ public class UsuarioControlImpl implements UsuarioControl {
             cs_maiorQueSeteCaracteres.criterio("SENHA", usuario.getSenha());
             cs_MenorQueVinteUmCaracteres.criterio("SENHA", usuario.getSenha());
             cs_conterDoisNumerosOuMais.criterio("SENHA", usuario.getSenha());
-        } catch (Exception e){
+        } catch (UnexpectedStringException e){
             Warning.warn(e.getMessage());
             return false;
         }
@@ -108,7 +106,7 @@ public class UsuarioControlImpl implements UsuarioControl {
 
     public void inserirUsuarios(List<Usuario> usuarios) {
         for(Usuario usuario : usuarios){
-            createUser(usuario);
+            createUser(usuario.getUsuario(), usuario.getSenha());
         }
     }
 }

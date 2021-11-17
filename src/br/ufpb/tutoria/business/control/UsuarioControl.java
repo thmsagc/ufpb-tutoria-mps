@@ -5,7 +5,7 @@ import br.ufpb.tutoria.business.model.Usuario;
 import java.util.List;
 
 public interface UsuarioControl {
-    public boolean createUser(Usuario usuario);
+    public boolean createUser(String nome, String senha);
     public List<Usuario> listarUsuarios();
     public Usuario getUser(String nome);
     public boolean saveUser(Usuario usuario);
