@@ -1,21 +1,30 @@
 package br.ufpb.tutoria.infra;
 
 import br.ufpb.tutoria.UfpbTutoriaConfig;
+import br.ufpb.tutoria.business.model.Data;
 import br.ufpb.tutoria.business.model.Usuario;
 import br.ufpb.tutoria.exception.ExistingUserException;
-import br.ufpb.tutoria.exception.InternalErrorException;
 import br.ufpb.tutoria.exception.NoUserException;
 import br.ufpb.tutoria.util.Warning;
 
 import java.io.*;
-import java.util.List;
+import java.util.Arrays;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 public class UsuarioRepositorioImpl implements UsuarioRepositorio {
 
-    private final List<Usuario> usuarios;
+    private SortedSet<Usuario> usuarios = new TreeSet<>();
 
-    public UsuarioRepositorioImpl(List<Usuario> usuarios) {
+    public SortedSet<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(SortedSet<Usuario> usuarios) {
         this.usuarios = usuarios;
+    }
+
+    public UsuarioRepositorioImpl() {
         this.carregarUsuarios();
     }
 
@@ -27,6 +36,7 @@ public class UsuarioRepositorioImpl implements UsuarioRepositorio {
                 if(u.getUsuario().equals(usuario.getUsuario()))
                     throw new Exception("Erro.");
             }
+            usuarios.add(new Usuario(usuario.getUsuario(), usuario.getSenha(), usuario.getDataNascimento()));
             salvarArquivoUsuario(usuario);
             return true;
         } catch (Exception e){
@@ -51,6 +61,7 @@ public class UsuarioRepositorioImpl implements UsuarioRepositorio {
 
         gravarArq.writeUTF(usuario.getUsuario());
         gravarArq.writeUTF(usuario.getSenha());
+        gravarArq.writeUTF(usuario.getDataNascimento().toString());
 
         arq.close();
         gravarArq.close();
@@ -58,32 +69,39 @@ public class UsuarioRepositorioImpl implements UsuarioRepositorio {
     }
 
     @Override
-    public List<Usuario> carregarUsuarios() {
+    public void carregarUsuarios() {
         try {
             File folder = new File(UfpbTutoriaConfig.path);
             File[] listOfFiles = folder.listFiles();
 
-            assert listOfFiles != null;
-            for (File file : listOfFiles) {
+            if (listOfFiles != null) {
+                assert listOfFiles != null;
+                for (File file : listOfFiles) {
+                    if (file.isFile()) {
 
-                if (file.isFile()) {
+                        FileInputStream arq = new FileInputStream(file);
+                        DataInputStream lerArq = new DataInputStream(arq);
 
-                    FileInputStream arq = new FileInputStream(file);
-                    DataInputStream lerArq = new DataInputStream(arq);
+                        String usuarioArquivo = lerArq.readUTF();
+                        String senhaArquivo = lerArq.readUTF();
 
-                    String usuarioArquivo = lerArq.readUTF();
-                    String senhaArquivo = lerArq.readUTF();
+                        String dataNascimento = lerArq.readUTF();
 
-                    arq.close();
-                    lerArq.close();
-                    usuarios.add(new Usuario(usuarioArquivo, senhaArquivo));
+                        arq.close();
+                        lerArq.close();
+                        usuarios.add(new Usuario(usuarioArquivo, senhaArquivo, new Data(dataNascimento)));
+                    }
                 }
+            } else {
+                Warning.warn("ERRO CRÍTICO: Ocorreu um problema no carregamento de usuários.");
+                Warning.warn("Certifique-se de que a pasta_usuarios está criada corretamente.");
+                System.exit(1);
             }
-        } catch (Exception e){
-            Warning.warn("ERRO CRÍTICO: Ocorreu um problema no carregamento de usuários.");
-            System.exit(1);
+        } catch(Exception e){
+                Warning.warn("ERRO CRÍTICO: Ocorreu um problema no carregamento de usuários.");
+                System.exit(1);
         }
-        return usuarios;
+        setUsuarios(usuarios);
     }
 
     public boolean apagarUsuarioByName(String usuario) throws NoUserException {

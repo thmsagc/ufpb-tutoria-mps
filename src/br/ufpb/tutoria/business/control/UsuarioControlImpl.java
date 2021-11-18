@@ -1,33 +1,33 @@
 package br.ufpb.tutoria.business.control;
 
 import br.ufpb.tutoria.business.control.criteriosstring.*;
+import br.ufpb.tutoria.business.model.Data;
 import br.ufpb.tutoria.business.model.Usuario;
 import br.ufpb.tutoria.exception.UnexpectedStringException;
 import br.ufpb.tutoria.infra.UsuarioRepositorio;
 import br.ufpb.tutoria.util.Warning;
 
 import java.util.List;
+import java.util.SortedSet;
 
 public class UsuarioControlImpl implements UsuarioControl {
-    private List<Usuario> usuarios;
 
-    private UsuarioRepositorio usuarioRepositorio;
+    private final UsuarioRepositorio usuarioRepositorio;
 
-    private CS_ConterDoisNumerosOuMais cs_conterDoisNumerosOuMais = new CS_ConterDoisNumerosOuMais();
-    private CS_MaiorQueSeteCaracteres cs_maiorQueSeteCaracteres = new CS_MaiorQueSeteCaracteres();
-    private CS_MenorQueTrezeCaracteres cs_menorQueTrezeCaracteres = new CS_MenorQueTrezeCaracteres();
-    private CS_MenorQueVinteUmCaracteres cs_MenorQueVinteUmCaracteres = new CS_MenorQueVinteUmCaracteres();
-    private CS_NaoConterNumeros cs_naoConterNumeros = new CS_NaoConterNumeros();
-    private CS_NaoVazio cs_naoVazio = new CS_NaoVazio();
+    private final CS_ConterDoisNumerosOuMais cs_conterDoisNumerosOuMais = new CS_ConterDoisNumerosOuMais();
+    private final CS_MaiorQueSeteCaracteres cs_maiorQueSeteCaracteres = new CS_MaiorQueSeteCaracteres();
+    private final CS_MenorQueTrezeCaracteres cs_menorQueTrezeCaracteres = new CS_MenorQueTrezeCaracteres();
+    private final CS_MenorQueVinteUmCaracteres cs_MenorQueVinteUmCaracteres = new CS_MenorQueVinteUmCaracteres();
+    private final CS_NaoConterNumeros cs_naoConterNumeros = new CS_NaoConterNumeros();
+    private final CS_NaoVazio cs_naoVazio = new CS_NaoVazio();
 
-    public UsuarioControlImpl(List<Usuario> usuarios, UsuarioRepositorio usuarioRepositorio) {
-        this.usuarios = usuarios;
+    public UsuarioControlImpl(UsuarioRepositorio usuarioRepositorio) {
         this.usuarioRepositorio = usuarioRepositorio;
     }
 
-    public boolean createUser(String username, String senha) {
+    public boolean createUser(String username, String senha, String dataNascimento) {
 
-        Usuario usuario = new Usuario(username, senha);
+        Usuario usuario = new Usuario(username, senha, new Data(dataNascimento));
 
         try {
             cs_naoConterNumeros.criterio("NOME DE USUARIO", usuario.getUsuario());
@@ -44,17 +44,10 @@ public class UsuarioControlImpl implements UsuarioControl {
         return saveUser(usuario);
     }
 
-    public List<Usuario> listarUsuarios() {
-        try {
-            usuarios = usuarioRepositorio.carregarUsuarios();
-
-            for(Usuario user: usuarios){
-                System.out.println("Login: "+user.getUsuario()+" senha: "+user.getSenha());
-            }
-        } catch(Exception e){
-            Warning.warn(e.getMessage());
+    public void listarUsuarios() {
+        for(Usuario user: usuarioRepositorio.getUsuarios()){
+            System.out.println("Login: "+user.getUsuario()+" senha: "+user.getSenha() + " data nascimento: "+ user.getDataNascimento());
         }
-        return usuarios;
     }
 
     public Usuario getUser(String nome){
@@ -96,17 +89,17 @@ public class UsuarioControlImpl implements UsuarioControl {
         return false;
     }
 
-    public List<Usuario> getUsuarios() {
-        return usuarios;
+    public SortedSet<Usuario> getUsuarios() {
+        return usuarioRepositorio.getUsuarios();
     }
 
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
+    public void setUsuarios(SortedSet<Usuario> usuarios) {
+        usuarioRepositorio.setUsuarios(usuarios);
     }
 
-    public void inserirUsuarios(List<Usuario> usuarios) {
+    public void inserirUsuarios(SortedSet<Usuario> usuarios) {
         for(Usuario usuario : usuarios){
-            createUser(usuario.getUsuario(), usuario.getSenha());
+            createUser(usuario.getUsuario(), usuario.getSenha(), usuario.getDataNascimento().toString());
         }
     }
 }
