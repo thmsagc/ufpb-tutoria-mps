@@ -7,11 +7,10 @@ public class Discente {
 
     private Usuario usuario;
 
-    public Discente(String nomeExibicao, String matricula, Data dataIngresso, Usuario usuario) {
+    public Discente(String nomeExibicao, String matricula, Data dataIngresso) {
         this.nomeExibicao = nomeExibicao;
         this.matricula = matricula;
         this.dataIngresso = dataIngresso;
-        this.usuario = usuario;
     }
 
     public String getNomeExibicao() {

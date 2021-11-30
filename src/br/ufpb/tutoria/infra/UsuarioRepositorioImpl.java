@@ -5,6 +5,7 @@ import br.ufpb.tutoria.business.model.Data;
 import br.ufpb.tutoria.business.model.Usuario;
 import br.ufpb.tutoria.exception.ExistingUserException;
 import br.ufpb.tutoria.exception.NoUserException;
+import br.ufpb.tutoria.infra.adapter.AdaptadorLeitorXML;
 import br.ufpb.tutoria.util.Warning;
 
 import java.io.*;
@@ -13,6 +14,8 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 public class UsuarioRepositorioImpl implements UsuarioRepositorio {
+
+    public static UsuarioRepositorio usuarioRepositorio;
 
     private SortedSet<Usuario> usuarios = new TreeSet<>();
 
@@ -24,7 +27,7 @@ public class UsuarioRepositorioImpl implements UsuarioRepositorio {
         this.usuarios = usuarios;
     }
 
-    public UsuarioRepositorioImpl() {
+    private UsuarioRepositorioImpl() {
         this.carregarUsuarios();
     }
 
@@ -82,14 +85,29 @@ public class UsuarioRepositorioImpl implements UsuarioRepositorio {
                         FileInputStream arq = new FileInputStream(file);
                         DataInputStream lerArq = new DataInputStream(arq);
 
-                        String usuarioArquivo = lerArq.readUTF();
-                        String senhaArquivo = lerArq.readUTF();
+                        String nomeArquivo = file.getName();;
+                        int pontoFormato = nomeArquivo.lastIndexOf('.');
+                        String formato =  (pontoFormato == -1) ? "" : nomeArquivo.substring(pontoFormato + 1);
 
-                        String dataNascimento = lerArq.readUTF();
+                        if(formato.equals("xml")) {
+                            usuarios = AdaptadorLeitorXML.adaptadorLeitorXML.adaptar(file.toString());
+                            return;
+                        }
+                        else if (formato.equals("txt"))
+                        {
 
-                        arq.close();
-                        lerArq.close();
-                        usuarios.add(new Usuario(usuarioArquivo, senhaArquivo, new Data(dataNascimento)));
+                            String usuarioArquivo = lerArq.readUTF();
+                            String senhaArquivo = lerArq.readUTF();
+
+                            String dataNascimento = lerArq.readUTF();
+
+                            arq.close();
+                            lerArq.close();
+                            usuarios.add(new Usuario(usuarioArquivo, senhaArquivo, new Data(dataNascimento)));
+                        }
+                        else {
+                            Warning.warn("Formato de arquivo '"+ formato +"' não esperado [arquivo:'"+nomeArquivo+"']");
+                        }
                     }
                 }
             } else {
@@ -127,5 +145,12 @@ public class UsuarioRepositorioImpl implements UsuarioRepositorio {
             }
         }
         throw new NoUserException("Erro: Não existe um usuário com nome " + name + ".");
+    }
+
+    public static UsuarioRepositorio getInstance(){
+        if(usuarioRepositorio == null){
+            usuarioRepositorio = new UsuarioRepositorioImpl();
+        }
+        return usuarioRepositorio;
     }
 }

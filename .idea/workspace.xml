@@ -2,19 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4693d7cb-18ae-4942-a7b6-d3de935df65d" name="Default Changelist" comment="renomeação dos objetos, classes e interfaces referentes a camada de persistência">
-      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/DiscenteControl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/DiscenteControlImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/DocenteControl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/DocenteControlImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/model/Discente.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/model/Docente.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/DiscenteRepositorio.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/DiscenteRepositorioImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/DocenteRepositorio.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/DocenteRepositorioImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/model/Relatorio.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/exception/UnexpectedFileFormatException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/adapter/AdaptadorGenerico.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/adapter/AdaptadorLeitorXML.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/relatorio/RelatorioAbstrato.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/relatorio/RelatorioTXT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/relatorio/RelatorioXML.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/UfpbTutoriaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/UfpbTutoriaConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/UsuarioControlImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/UsuarioControlImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/model/Discente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/model/Discente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/model/Docente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/model/Docente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/UsuarioRepositorioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/UsuarioRepositorioImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,6 +29,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -56,15 +60,17 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/br/ufpb/tutoria/infra" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\thoma\Desktop\MPS\ufpb-tutoria-mps\src\br\ufpb\tutoria\infra" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="br.ufpb.tutoria.infra.relatorio" />
+      <recent name="br.ufpb.tutoria.exception" />
       <recent name="br.ufpb.tutoria.business.control" />
       <recent name="br.ufpb.tutoria.infra" />
-      <recent name="br.ufpb.tutoria.exception" />
       <recent name="br.ufpb.tutoria.business.control.criteriosstring" />
     </key>
   </component>
@@ -110,6 +116,7 @@
       <updated>1636653190570</updated>
       <workItem from="1636653191987" duration="5954000" />
       <workItem from="1637189195575" duration="1737000" />
+      <workItem from="1638290315584" duration="6105000" />
     </task>
     <task id="LOCAL-00001" summary="correções e melhorias de código, implementação da injeção de dependências.">
       <created>1636655167975</created>

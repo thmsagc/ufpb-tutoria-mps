@@ -7,11 +7,10 @@ public class Docente {
 
     private Usuario usuario;
 
-    public Docente(String nomeExibicao, String titulo, String departamento, Usuario usuario) {
+    public Docente(String nomeExibicao, String titulo, String departamento) {
         this.nomeExibicao = nomeExibicao;
         this.titulo = titulo;
         this.departamento = departamento;
-        this.usuario = usuario;
     }
 
     public String getNomeExibicao() {
