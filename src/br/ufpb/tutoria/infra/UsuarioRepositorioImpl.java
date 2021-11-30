@@ -55,7 +55,7 @@ public class UsuarioRepositorioImpl implements UsuarioRepositorio {
     }
 
     private boolean salvarArquivoUsuario(Usuario usuario) throws IOException {
-        String pathCompleto = UfpbTutoriaConfig.path + usuario.getUsuario() + ".txt";
+        String pathCompleto = UfpbTutoriaConfig.pathUsuarios + usuario.getUsuario() + ".txt";
         FileOutputStream arq = new FileOutputStream(pathCompleto);
         DataOutputStream gravarArq = new DataOutputStream(arq);
 
@@ -71,7 +71,7 @@ public class UsuarioRepositorioImpl implements UsuarioRepositorio {
     @Override
     public void carregarUsuarios() {
         try {
-            File folder = new File(UfpbTutoriaConfig.path);
+            File folder = new File(UfpbTutoriaConfig.pathUsuarios);
             File[] listOfFiles = folder.listFiles();
 
             if (listOfFiles != null) {
@@ -107,7 +107,7 @@ public class UsuarioRepositorioImpl implements UsuarioRepositorio {
     public boolean apagarUsuarioByName(String usuario) throws NoUserException {
         try {
             Usuario finded = findByName(usuario);
-            String pathCompleto = UfpbTutoriaConfig.path + usuario + ".txt";
+            String pathCompleto = UfpbTutoriaConfig.pathUsuarios + usuario + ".txt";
             File f = new File(pathCompleto);
             if (f.delete()) {
                 usuarios.remove(finded);

@@ -2,20 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4693d7cb-18ae-4942-a7b6-d3de935df65d" name="Default Changelist" comment="renomeação dos objetos, classes e interfaces referentes a camada de persistência">
-      <change afterPath="$PROJECT_DIR$/pasta_usuarios/alfred.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pasta_usuarios/zezin.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/model/Data.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/exception/InvalidDateFormatException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/DiscenteControl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/DiscenteControlImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/DocenteControl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/DocenteControlImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/model/Discente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/model/Docente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/DiscenteRepositorio.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/DiscenteRepositorioImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/DocenteRepositorio.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/DocenteRepositorioImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pasta_usuarios/teste.txt" beforeDir="false" afterPath="$PROJECT_DIR$/pasta_usuarios/teste.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pasta_usuarios/testedois.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pasta_usuarios/testetres.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pasta_usuarios/testeum.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/UsuarioControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/UsuarioControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/UfpbTutoriaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/UfpbTutoriaConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/UsuarioControlImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/control/UsuarioControlImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/model/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/UsuarioRepositorio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/UsuarioRepositorio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/UsuarioRepositorioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/UsuarioRepositorioImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,9 +55,15 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/br/ufpb/tutoria/infra" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\thoma\Desktop\MPS\ufpb-tutoria-mps\src\br\ufpb\tutoria\infra" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="br.ufpb.tutoria.business.control" />
+      <recent name="br.ufpb.tutoria.infra" />
       <recent name="br.ufpb.tutoria.exception" />
       <recent name="br.ufpb.tutoria.business.control.criteriosstring" />
     </key>
@@ -77,15 +82,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

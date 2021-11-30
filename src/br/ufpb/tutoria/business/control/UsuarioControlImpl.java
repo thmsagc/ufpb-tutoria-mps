@@ -12,6 +12,8 @@ import java.util.SortedSet;
 
 public class UsuarioControlImpl implements UsuarioControl {
 
+    public static UsuarioControl usuarioControl;
+
     private final UsuarioRepositorio usuarioRepositorio;
 
     private final CS_ConterDoisNumerosOuMais cs_conterDoisNumerosOuMais = new CS_ConterDoisNumerosOuMais();
@@ -21,7 +23,7 @@ public class UsuarioControlImpl implements UsuarioControl {
     private final CS_NaoConterNumeros cs_naoConterNumeros = new CS_NaoConterNumeros();
     private final CS_NaoVazio cs_naoVazio = new CS_NaoVazio();
 
-    public UsuarioControlImpl(UsuarioRepositorio usuarioRepositorio) {
+    private UsuarioControlImpl(UsuarioRepositorio usuarioRepositorio) {
         this.usuarioRepositorio = usuarioRepositorio;
     }
 
@@ -101,5 +103,12 @@ public class UsuarioControlImpl implements UsuarioControl {
         for(Usuario usuario : usuarios){
             createUser(usuario.getUsuario(), usuario.getSenha(), usuario.getDataNascimento().toString());
         }
+    }
+
+    public static UsuarioControl getInstance(UsuarioRepositorio usuarioRepositorio){
+        if(usuarioControl == null){
+            usuarioControl = new UsuarioControlImpl(usuarioRepositorio);
+        }
+        return usuarioControl;
     }
 }
