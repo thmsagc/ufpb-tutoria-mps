@@ -1,9 +1,8 @@
 package br.ufpb.tutoria.business.control;
 
-import br.ufpb.tutoria.business.model.Data;
 import br.ufpb.tutoria.business.model.Docente;
-import br.ufpb.tutoria.infra.DocenteRepositorio;
-import br.ufpb.tutoria.infra.UsuarioRepositorio;
+import br.ufpb.tutoria.infra.repositorio.DocenteRepositorio;
+import br.ufpb.tutoria.infra.repositorio.DocenteRepositorioImpl;
 import br.ufpb.tutoria.util.Warning;
 
 import java.util.SortedSet;
@@ -14,8 +13,8 @@ public class DocenteControlImpl implements DocenteControl {
 
     private final DocenteRepositorio docenteRepositorio;
 
-    private DocenteControlImpl(DocenteRepositorio docenteRepositorio) {
-        this.docenteRepositorio = docenteRepositorio;
+    private DocenteControlImpl() {
+        this.docenteRepositorio = DocenteRepositorioImpl.getInstance();
     }
 
     public boolean create(String nomeExibicao, String titulo, String departamento) {
@@ -25,7 +24,7 @@ public class DocenteControlImpl implements DocenteControl {
 
     public Docente getByNomeExibicao(String nome){
         try {
-            docenteRepositorio.findByNomeExibicao(nome);
+            docenteRepositorio.procurar(nome);
         } catch (Exception e){
             Warning.warn(e.getMessage());
         }
@@ -34,7 +33,7 @@ public class DocenteControlImpl implements DocenteControl {
 
     public boolean save(Docente docente) {
         try {
-            docenteRepositorio.gravaDocente(docente);
+            docenteRepositorio.gravar(docente);
             return true;
         } catch (Exception e){
             Warning.warn(e.getMessage());
@@ -44,7 +43,7 @@ public class DocenteControlImpl implements DocenteControl {
 
     public boolean delete(String nome){
         try {
-            docenteRepositorio.apagarDocenteByNomeExibicao(nome);
+            docenteRepositorio.procurar(nome);
             return true;
         } catch (Exception e){
             Warning.warn(e.getMessage());
@@ -54,7 +53,7 @@ public class DocenteControlImpl implements DocenteControl {
 
     public boolean update(Docente docente){
         try {
-            docenteRepositorio.atualizarDocente(docente);
+            docenteRepositorio.atualizar(docente);
             return true;
         } catch (Exception e){
             Warning.warn(e.getMessage());
@@ -63,11 +62,11 @@ public class DocenteControlImpl implements DocenteControl {
     }
 
     public SortedSet<Docente> getDocentes() {
-        return docenteRepositorio.getDocentes();
+        return docenteRepositorio.getList();
     }
 
     public void setDocentes(SortedSet<Docente> docentes) {
-        docenteRepositorio.setDocentes(docentes);
+        docenteRepositorio.setList(docentes);
     }
 
     public void inserirDocentes(SortedSet<Docente> docentes) {
@@ -76,9 +75,9 @@ public class DocenteControlImpl implements DocenteControl {
         }
     }
 
-    public static DocenteControl getInstance(DocenteRepositorio docenteRepositorio){
+    public static DocenteControl getInstance(){
         if(docenteControl == null){
-            docenteControl = new DocenteControlImpl(docenteRepositorio);
+            docenteControl = new DocenteControlImpl();
         }
         return docenteControl;
     }

@@ -4,10 +4,10 @@ import br.ufpb.tutoria.business.control.criteriosstring.*;
 import br.ufpb.tutoria.business.model.Data;
 import br.ufpb.tutoria.business.model.Usuario;
 import br.ufpb.tutoria.exception.UnexpectedStringException;
-import br.ufpb.tutoria.infra.UsuarioRepositorio;
+import br.ufpb.tutoria.infra.repositorio.UsuarioRepositorio;
+import br.ufpb.tutoria.infra.repositorio.UsuarioRepositorioImpl;
 import br.ufpb.tutoria.util.Warning;
 
-import java.util.List;
 import java.util.SortedSet;
 
 public class UsuarioControlImpl implements UsuarioControl {
@@ -23,8 +23,8 @@ public class UsuarioControlImpl implements UsuarioControl {
     private final CS_NaoConterNumeros cs_naoConterNumeros = new CS_NaoConterNumeros();
     private final CS_NaoVazio cs_naoVazio = new CS_NaoVazio();
 
-    private UsuarioControlImpl(UsuarioRepositorio usuarioRepositorio) {
-        this.usuarioRepositorio = usuarioRepositorio;
+    private UsuarioControlImpl() {
+        this.usuarioRepositorio = UsuarioRepositorioImpl.getInstance();
     }
 
     public boolean createUser(String username, String senha, String dataNascimento) {
@@ -47,14 +47,14 @@ public class UsuarioControlImpl implements UsuarioControl {
     }
 
     public void listarUsuarios() {
-        for(Usuario user: usuarioRepositorio.getUsuarios()){
+        for(Usuario user: usuarioRepositorio.getList()){
             System.out.println("Login: "+user.getUsuario()+" senha: "+user.getSenha() + " data nascimento: "+ user.getDataNascimento());
         }
     }
 
     public Usuario getUser(String nome){
         try {
-            usuarioRepositorio.findByName(nome);
+            usuarioRepositorio.procurar(nome);
         } catch (Exception e){
             Warning.warn(e.getMessage());
         }
@@ -63,7 +63,7 @@ public class UsuarioControlImpl implements UsuarioControl {
 
     public boolean saveUser(Usuario usuario) {
         try {
-            usuarioRepositorio.gravaUsuario(usuario);
+            usuarioRepositorio.gravar(usuario);
             return true;
         } catch (Exception e){
             Warning.warn(e.getMessage());
@@ -73,7 +73,7 @@ public class UsuarioControlImpl implements UsuarioControl {
 
     public boolean deleteUser(String nome){
         try {
-            usuarioRepositorio.apagarUsuarioByName(nome);
+            usuarioRepositorio.apagar(nome);
             return true;
         } catch (Exception e){
             Warning.warn(e.getMessage());
@@ -83,7 +83,7 @@ public class UsuarioControlImpl implements UsuarioControl {
 
     public boolean updateUser(Usuario usuario){
         try {
-            usuarioRepositorio.atualizarUsuario(usuario);
+            usuarioRepositorio.atualizar(usuario);
             return true;
         } catch (Exception e){
             Warning.warn(e.getMessage());
@@ -92,11 +92,11 @@ public class UsuarioControlImpl implements UsuarioControl {
     }
 
     public SortedSet<Usuario> getUsuarios() {
-        return usuarioRepositorio.getUsuarios();
+        return usuarioRepositorio.getList();
     }
 
     public void setUsuarios(SortedSet<Usuario> usuarios) {
-        usuarioRepositorio.setUsuarios(usuarios);
+        usuarioRepositorio.setList(usuarios);
     }
 
     public void inserirUsuarios(SortedSet<Usuario> usuarios) {
@@ -105,9 +105,9 @@ public class UsuarioControlImpl implements UsuarioControl {
         }
     }
 
-    public static UsuarioControl getInstance(UsuarioRepositorio usuarioRepositorio){
+    public static UsuarioControl getInstance(){
         if(usuarioControl == null){
-            usuarioControl = new UsuarioControlImpl(usuarioRepositorio);
+            usuarioControl = new UsuarioControlImpl();
         }
         return usuarioControl;
     }

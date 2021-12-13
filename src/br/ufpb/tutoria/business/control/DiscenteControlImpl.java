@@ -2,7 +2,8 @@ package br.ufpb.tutoria.business.control;
 
 import br.ufpb.tutoria.business.model.Data;
 import br.ufpb.tutoria.business.model.Discente;
-import br.ufpb.tutoria.infra.DiscenteRepositorio;
+import br.ufpb.tutoria.infra.repositorio.DiscenteRepositorio;
+import br.ufpb.tutoria.infra.repositorio.DiscenteRepositorioImpl;
 import br.ufpb.tutoria.util.Warning;
 
 import java.util.SortedSet;
@@ -13,8 +14,8 @@ public class DiscenteControlImpl implements DiscenteControl {
 
     private final DiscenteRepositorio discenteRepositorio;
 
-    private DiscenteControlImpl(DiscenteRepositorio discenteRepositorio) {
-        this.discenteRepositorio = discenteRepositorio;
+    private DiscenteControlImpl() {
+        this.discenteRepositorio = DiscenteRepositorioImpl.getInstance();
     }
 
     public boolean create(String nomeExibicao, String matricula, String dataIngresso) {
@@ -24,7 +25,7 @@ public class DiscenteControlImpl implements DiscenteControl {
 
     public Discente getByNomeExibicao(String nome){
         try {
-            discenteRepositorio.findByNomeExibicao(nome);
+            discenteRepositorio.procurar(nome);
         } catch (Exception e){
             Warning.warn(e.getMessage());
         }
@@ -33,7 +34,7 @@ public class DiscenteControlImpl implements DiscenteControl {
 
     public boolean save(Discente discente) {
         try {
-            discenteRepositorio.gravaDiscente(discente);
+            discenteRepositorio.gravar(discente);
             return true;
         } catch (Exception e){
             Warning.warn(e.getMessage());
@@ -43,7 +44,7 @@ public class DiscenteControlImpl implements DiscenteControl {
 
     public boolean delete(String nome){
         try {
-            discenteRepositorio.apagarDiscenteByNomeExibicao(nome);
+            discenteRepositorio.apagar(nome);
             return true;
         } catch (Exception e){
             Warning.warn(e.getMessage());
@@ -53,7 +54,7 @@ public class DiscenteControlImpl implements DiscenteControl {
 
     public boolean update(Discente discente){
         try {
-            discenteRepositorio.atualizarDiscente(discente);
+            discenteRepositorio.atualizar(discente);
             return true;
         } catch (Exception e){
             Warning.warn(e.getMessage());
@@ -62,11 +63,11 @@ public class DiscenteControlImpl implements DiscenteControl {
     }
 
     public SortedSet<Discente> getDiscentes() {
-        return discenteRepositorio.getDiscentes();
+        return discenteRepositorio.getList();
     }
 
     public void setDiscentes(SortedSet<Discente> discentes) {
-        discenteRepositorio.setDiscentes(discentes);
+        discenteRepositorio.setList(discentes);
     }
 
     public void inserirDiscentes(SortedSet<Discente> discentes) {
@@ -75,9 +76,9 @@ public class DiscenteControlImpl implements DiscenteControl {
         }
     }
 
-    public static DiscenteControl getInstance(DiscenteRepositorio discenteRepositorio){
+    public static DiscenteControl getInstance(){
         if(discenteControl == null){
-            discenteControl = new DiscenteControlImpl(discenteRepositorio);
+            discenteControl = new DiscenteControlImpl();
         }
         return discenteControl;
     }

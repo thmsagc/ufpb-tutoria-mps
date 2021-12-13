@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4693d7cb-18ae-4942-a7b6-d3de935df65d" name="Default Changelist" comment="renomeação dos objetos, classes e interfaces referentes a camada de persistência">
-      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/model/Relatorio.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/exception/UnexpectedFileFormatException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/adapter/AdaptadorGenerico.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/adapter/AdaptadorLeitorXML.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/relatorio/RelatorioAbstrato.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/relatorio/RelatorioTXT.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/relatorio/RelatorioXML.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/UfpbTutoriaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/UfpbTutoriaConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/model/Discente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/model/Discente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/model/Docente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/business/model/Docente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/UsuarioRepositorioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/ufpb/tutoria/infra/UsuarioRepositorioImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +63,17 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="br.ufpb.tutoria.Main" />
       <module name="UFPB-TUTORIA" />
@@ -84,17 +83,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
