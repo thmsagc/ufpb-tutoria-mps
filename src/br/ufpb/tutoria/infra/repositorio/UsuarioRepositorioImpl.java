@@ -1,4 +1,4 @@
-package br.ufpb.tutoria.infra;
+package br.ufpb.tutoria.infra.repositorio;
 
 import br.ufpb.tutoria.UfpbTutoriaConfig;
 import br.ufpb.tutoria.business.model.Data;
@@ -9,7 +9,6 @@ import br.ufpb.tutoria.infra.adapter.AdaptadorLeitorXML;
 import br.ufpb.tutoria.util.Warning;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -19,20 +18,22 @@ public class UsuarioRepositorioImpl implements UsuarioRepositorio {
 
     private SortedSet<Usuario> usuarios = new TreeSet<>();
 
-    public SortedSet<Usuario> getUsuarios() {
+    @Override
+    public SortedSet<Usuario> getList() {
         return usuarios;
     }
 
-    public void setUsuarios(SortedSet<Usuario> usuarios) {
+    @Override
+    public void setList(SortedSet<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
 
     private UsuarioRepositorioImpl() {
-        this.carregarUsuarios();
+        this.carregar();
     }
 
     @Override
-    public boolean gravaUsuario(Usuario usuario) throws ExistingUserException {
+    public boolean gravar(Usuario usuario) throws ExistingUserException {
 
         try {
             for(Usuario u : usuarios){
@@ -40,7 +41,7 @@ public class UsuarioRepositorioImpl implements UsuarioRepositorio {
                     throw new Exception("Erro.");
             }
             usuarios.add(new Usuario(usuario.getUsuario(), usuario.getSenha(), usuario.getDataNascimento()));
-            salvarArquivoUsuario(usuario);
+            gravarArquivo(usuario);
             return true;
         } catch (Exception e){
             throw new ExistingUserException("Erro: Existe um usuário com nome " + usuario.getUsuario() + " nos arquivos.");
@@ -48,16 +49,16 @@ public class UsuarioRepositorioImpl implements UsuarioRepositorio {
     }
 
     @Override
-    public boolean atualizarUsuario(Usuario usuario) throws NoUserException {
+    public void atualizar(Usuario usuario) throws NoUserException {
         try {
-            findByName(usuario.getUsuario());
-            return salvarArquivoUsuario(usuario);
+            procurar(usuario.getUsuario());
+            gravarArquivo(usuario);
         } catch (Exception e){
             throw new NoUserException("Erro: Não existe um usuário com nome " + usuario.getUsuario() + " nos arquivos.");
         }
     }
 
-    private boolean salvarArquivoUsuario(Usuario usuario) throws IOException {
+    public void gravarArquivo(Usuario usuario) throws IOException {
         String pathCompleto = UfpbTutoriaConfig.pathUsuarios + usuario.getUsuario() + ".txt";
         FileOutputStream arq = new FileOutputStream(pathCompleto);
         DataOutputStream gravarArq = new DataOutputStream(arq);
@@ -68,11 +69,10 @@ public class UsuarioRepositorioImpl implements UsuarioRepositorio {
 
         arq.close();
         gravarArq.close();
-        return true;
     }
 
     @Override
-    public void carregarUsuarios() {
+    public void carregar() {
         try {
             File folder = new File(UfpbTutoriaConfig.pathUsuarios);
             File[] listOfFiles = folder.listFiles();
@@ -119,12 +119,12 @@ public class UsuarioRepositorioImpl implements UsuarioRepositorio {
                 Warning.warn("ERRO CRÍTICO: Ocorreu um problema no carregamento de usuários.");
                 System.exit(1);
         }
-        setUsuarios(usuarios);
+        setList(usuarios);
     }
 
-    public boolean apagarUsuarioByName(String usuario) throws NoUserException {
+    public boolean apagar(String usuario) throws NoUserException {
         try {
-            Usuario finded = findByName(usuario);
+            Usuario finded = procurar(usuario);
             String pathCompleto = UfpbTutoriaConfig.pathUsuarios + usuario + ".txt";
             File f = new File(pathCompleto);
             if (f.delete()) {
@@ -138,7 +138,7 @@ public class UsuarioRepositorioImpl implements UsuarioRepositorio {
     }
 
     @Override
-    public Usuario findByName(String name) throws NoUserException {
+    public Usuario procurar(String name) throws NoUserException {
         for(Usuario usuario : usuarios){
             if(usuario.getUsuario().equals(name)){
                 return usuario;

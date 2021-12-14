@@ -1,33 +1,35 @@
 package br.ufpb.tutoria.business.control;
 
 import br.ufpb.tutoria.business.control.criteriosstring.*;
+import br.ufpb.tutoria.business.model.Data;
 import br.ufpb.tutoria.business.model.Usuario;
 import br.ufpb.tutoria.exception.UnexpectedStringException;
-import br.ufpb.tutoria.infra.UsuarioRepositorio;
+import br.ufpb.tutoria.infra.repositorio.UsuarioRepositorio;
+import br.ufpb.tutoria.infra.repositorio.UsuarioRepositorioImpl;
 import br.ufpb.tutoria.util.Warning;
 
-import java.util.List;
+import java.util.SortedSet;
 
 public class UsuarioControlImpl implements UsuarioControl {
-    private List<Usuario> usuarios;
 
-    private UsuarioRepositorio usuarioRepositorio;
+    public static UsuarioControl usuarioControl;
 
-    private CS_ConterDoisNumerosOuMais cs_conterDoisNumerosOuMais = new CS_ConterDoisNumerosOuMais();
-    private CS_MaiorQueSeteCaracteres cs_maiorQueSeteCaracteres = new CS_MaiorQueSeteCaracteres();
-    private CS_MenorQueTrezeCaracteres cs_menorQueTrezeCaracteres = new CS_MenorQueTrezeCaracteres();
-    private CS_MenorQueVinteUmCaracteres cs_MenorQueVinteUmCaracteres = new CS_MenorQueVinteUmCaracteres();
-    private CS_NaoConterNumeros cs_naoConterNumeros = new CS_NaoConterNumeros();
-    private CS_NaoVazio cs_naoVazio = new CS_NaoVazio();
+    private final UsuarioRepositorio usuarioRepositorio;
 
-    public UsuarioControlImpl(List<Usuario> usuarios, UsuarioRepositorio usuarioRepositorio) {
-        this.usuarios = usuarios;
-        this.usuarioRepositorio = usuarioRepositorio;
+    private final CS_ConterDoisNumerosOuMais cs_conterDoisNumerosOuMais = new CS_ConterDoisNumerosOuMais();
+    private final CS_MaiorQueSeteCaracteres cs_maiorQueSeteCaracteres = new CS_MaiorQueSeteCaracteres();
+    private final CS_MenorQueTrezeCaracteres cs_menorQueTrezeCaracteres = new CS_MenorQueTrezeCaracteres();
+    private final CS_MenorQueVinteUmCaracteres cs_MenorQueVinteUmCaracteres = new CS_MenorQueVinteUmCaracteres();
+    private final CS_NaoConterNumeros cs_naoConterNumeros = new CS_NaoConterNumeros();
+    private final CS_NaoVazio cs_naoVazio = new CS_NaoVazio();
+
+    private UsuarioControlImpl() {
+        this.usuarioRepositorio = UsuarioRepositorioImpl.getInstance();
     }
 
-    public boolean createUser(String username, String senha) {
+    public boolean createUser(String username, String senha, String dataNascimento) {
 
-        Usuario usuario = new Usuario(username, senha);
+        Usuario usuario = new Usuario(username, senha, new Data(dataNascimento));
 
         try {
             cs_naoConterNumeros.criterio("NOME DE USUARIO", usuario.getUsuario());
@@ -44,22 +46,15 @@ public class UsuarioControlImpl implements UsuarioControl {
         return saveUser(usuario);
     }
 
-    public List<Usuario> listarUsuarios() {
-        try {
-            usuarios = usuarioRepositorio.carregarUsuarios();
-
-            for(Usuario user: usuarios){
-                System.out.println("Login: "+user.getUsuario()+" senha: "+user.getSenha());
-            }
-        } catch(Exception e){
-            Warning.warn(e.getMessage());
+    public void listarUsuarios() {
+        for(Usuario user: usuarioRepositorio.getList()){
+            System.out.println("Login: "+user.getUsuario()+" senha: "+user.getSenha() + " data nascimento: "+ user.getDataNascimento());
         }
-        return usuarios;
     }
 
     public Usuario getUser(String nome){
         try {
-            usuarioRepositorio.findByName(nome);
+            usuarioRepositorio.procurar(nome);
         } catch (Exception e){
             Warning.warn(e.getMessage());
         }
@@ -68,7 +63,7 @@ public class UsuarioControlImpl implements UsuarioControl {
 
     public boolean saveUser(Usuario usuario) {
         try {
-            usuarioRepositorio.gravaUsuario(usuario);
+            usuarioRepositorio.gravar(usuario);
             return true;
         } catch (Exception e){
             Warning.warn(e.getMessage());
@@ -78,7 +73,7 @@ public class UsuarioControlImpl implements UsuarioControl {
 
     public boolean deleteUser(String nome){
         try {
-            usuarioRepositorio.apagarUsuarioByName(nome);
+            usuarioRepositorio.apagar(nome);
             return true;
         } catch (Exception e){
             Warning.warn(e.getMessage());
@@ -88,7 +83,7 @@ public class UsuarioControlImpl implements UsuarioControl {
 
     public boolean updateUser(Usuario usuario){
         try {
-            usuarioRepositorio.atualizarUsuario(usuario);
+            usuarioRepositorio.atualizar(usuario);
             return true;
         } catch (Exception e){
             Warning.warn(e.getMessage());
@@ -96,17 +91,24 @@ public class UsuarioControlImpl implements UsuarioControl {
         return false;
     }
 
-    public List<Usuario> getUsuarios() {
-        return usuarios;
+    public SortedSet<Usuario> getUsuarios() {
+        return usuarioRepositorio.getList();
     }
 
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
+    public void setUsuarios(SortedSet<Usuario> usuarios) {
+        usuarioRepositorio.setList(usuarios);
     }
 
-    public void inserirUsuarios(List<Usuario> usuarios) {
+    public void inserirUsuarios(SortedSet<Usuario> usuarios) {
         for(Usuario usuario : usuarios){
-            createUser(usuario.getUsuario(), usuario.getSenha());
+            createUser(usuario.getUsuario(), usuario.getSenha(), usuario.getDataNascimento().toString());
         }
+    }
+
+    public static UsuarioControl getInstance(){
+        if(usuarioControl == null){
+            usuarioControl = new UsuarioControlImpl();
+        }
+        return usuarioControl;
     }
 }
